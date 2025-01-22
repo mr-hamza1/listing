@@ -39,7 +39,7 @@ app.use(express.static(path.join(__dirname, "/views/public")));
 const store = MongoStore.create({
     mongoUrl: dbURL, // MongoDB URL from environment variable
     crypto: {
-        secret: "programmer", // Encryption key for session data
+        secret: process.env.SESSION_SECRET || "programmer", // Add SESSION_SECRET in env variables
     },
     touchAfter: 24 * 3600, // Delay in seconds to avoid frequent updates
 });
