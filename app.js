@@ -4,6 +4,7 @@ if (process.env.NODE_ENV != "production") {
 }
 
 const express = require("express");
+const PORT = process.env.PORT || 8080;
 const app = express();
 const path = require("path");
 const mongoose = require("mongoose");
@@ -73,6 +74,7 @@ main().then(() => {
     console.log("Connected to MongoDB");
 }).catch((err) => {
     console.log("MongoDB connection error:", err);
+    process.exit(1);
 });
 
 async function main() {
@@ -80,7 +82,7 @@ async function main() {
 }
 
 // Start the server on port 8080
-app.listen("8080", (req, res) => {
+app.listen(PORT, (req, res) => {
     console.log("Server is listening on port 8080");
 });
 
