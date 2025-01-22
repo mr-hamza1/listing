@@ -1,6 +1,6 @@
 // Load environment variables in development mode
 if (process.env.NODE_ENV != "production") {
-    require('dotenv').config();
+    require('dotenv').config(); // Make sure this is called early in the app
 }
 
 const express = require("express");
@@ -51,7 +51,7 @@ const sessionOptions = {
     saveUninitialized: true, // Saves new sessions that are unmodified
     cookie: {
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // Session expires in 7 days
-        maxAge: 2 * 24 * 60 * 60 * 1000, // Max age for the cookie (2 days)
+        maxAge: 15 * 24 * 60 * 60 * 1000, // Max age for the cookie (15 days)
         // httpOnly: true, // Uncomment to restrict access to the cookie to HTTP requests only
     }
 };
