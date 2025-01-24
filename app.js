@@ -21,6 +21,8 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
+const dbURL = process.env.DB_URL;
+
 
 // Set up view engine to use EJS with ejs-mate for layout support
 app.set("view engine", "ejs");
@@ -36,7 +38,7 @@ app.use(express.static(path.join(__dirname, "/views/public")));
 
 // Configure MongoDB session store
 const store = MongoStore.create({
-    mongoUrl: process.env.DB_URL, // MongoDB URL from environment variable
+    mongoUrl: dbURL, // MongoDB URL from environment variable
     crypto: {
         secret: process.env.SESSION_SECRET || "programmer", // Add SESSION_SECRET in env variables
     },
