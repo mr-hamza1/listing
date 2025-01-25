@@ -50,7 +50,7 @@ body{
  
 .f-info{
     display: flex;
-    background-color: #ebebeb;
+    background-color: black;
     height: 8rem;
     flex-wrap: wrap;
     justify-content: center;
