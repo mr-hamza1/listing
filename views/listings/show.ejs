@@ -13,13 +13,20 @@
           
 
             <body>
-               <div class="card card-listing offset-2" style="width: 40rem;">
+               <!-- <div class="card card-listing offset-2" style="width: 40rem;"> -->
+                     <div class="card card-listing offset-2 row row-cols-lg-2 row-cols-md-2 row-cols-sm-1 mt-3">
+
                   <h2>
                      <%= list.title %>
                   </h2>
                   <br><br>
-                  <img src="<%= list.image.url %>" class="card-img-top" alt="listing-image"
-                     style="width: 20rem; height: 20rem;">
+                  <!-- <img src="<%= list.image.url %>" class="card-img-top" alt="listing-image"
+                     style="width: 20rem; height: 20rem;"> -->
+                        <div class="card card-listing">
+                           <img src="<%= list.image.url %>" class="card-img-top img-fluid" alt="listing-image">
+                        </div>
+                              
+                     
                </div>
 
                <div class="card-body offset-2">
@@ -83,36 +90,33 @@
 
                            <% if (list.review.length> 0) { %>
                               <div class="row offset-2">
-                                 <hr class="col-10">
-                                 <br>
-                                 <h4>Reviews:</h4>
-                                 <br><br>
+                                 <hr class="col-12"> <!-- Full width on all screens -->
+                                 <h4 class="col-12">Reviews:</h4>
+                                 
                                  <% for (review of list.review) { %>
-                                    <div class="card col-4 ms-5 mb-3">
-                                       <div class="card-body">
-                                          <h5 class="card-title">
-                                             <img style="height: 50px; width: 50px; border-radius: 50%;"
-                                                src="https://static.posters.cz/image/750/wall-murals/the-batman-2022-truth-i123341.jpg"
-                                                alt="">
-                                             @<%= review.author.username %>
-                                          </h5>
-                                          <p class="starability-result" data-rating="<%= review.rating %>"></p>
-                                          <p class="card-text">
-                                             <%= review.comment %>
-                                          </p>
-                                          <p class="card-text">
-                                             <%= review.rating %> stars
-                                          </p>
-                                       </div>
-                                       <form action="/listings/<%= list._id %>/review/<%= review._id %>?_method=DELETE"
-                                          method="post" class="mb-2 mt-2">
-                                          <% if (user) { %>
-                                             <button class="btn btn-sm btn-dark">Delete</button>
+                                     <div class="col-lg-4 col-md-6 col-sm-12 mb-3"> <!-- Responsive columns -->
+                                         <div class="card h-100"> <!-- Ensures uniform height -->
+                                             <div class="card-body">
+                                                 <h5 class="card-title d-flex align-items-center">
+                                                     <img class="me-2 rounded-circle" src="https://static.posters.cz/image/750/wall-murals/the-batman-2022-truth-i123341.jpg" 
+                                                          alt="" style="height: 50px; width: 50px;">
+                                                     @<%= review.author.username %>
+                                                 </h5>
+                                                 <p class="starability-result" data-rating="<%= review.rating %>"></p>
+                                                 <p class="card-text"><%= review.comment %></p>
+                                                 <p class="card-text"><%= review.rating %> stars</p>
+                                             </div>
+                                             <% if (user) { %>
+                                                 <form action="/listings/<%= list._id %>/review/<%= review._id %>?_method=DELETE"
+                                                       method="post" class="mb-2 mt-2 text-center">
+                                                     <button class="btn btn-sm btn-dark">Delete</button>
+                                                 </form>
                                              <% } %>
-                                       </form>
-                                    </div>
-                                    <% } %>
-                              </div>
+                                         </div>
+                                     </div>
+                                 <% } %>
+                             </div>
+                             
                               <% } %>
                                  <br><br><br>
                                  <div class="offset-2 col-8">
